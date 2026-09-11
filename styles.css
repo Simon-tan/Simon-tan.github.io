@@ -97,8 +97,17 @@ body {
   font-synthesis-weight: none;
 }
 
+/* Justified prose, as the original site set it. Justification without
+   hyphenation opens rivers of whitespace, so the two ship together; hyphens:
+   auto relies on the lang attribute every page now carries. */
 p {
   margin-bottom: var(--s4);
+  text-align: justify;
+  hyphens: auto;
+  /* Never break a word shorter than 6 letters, and never leave fewer than 3
+     on either side of the break — the difference between "cog-nitive" and
+     a stray "e-" hanging off the margin. */
+  hyphenate-limit-chars: 6 3 3;
 }
 
 p:last-child {
@@ -246,7 +255,11 @@ li > ol {
 /* The site's single large typographic moment (DECISIONS D-03). The rule sits on
    the paragraph, not the column, so it lands on the page's reading edge rather
    than out in the gutter. */
+/* The hero stays ragged-right. At 32ch a justified line opens gaps you could
+   drive a truck through, and display type has no small words to absorb them. */
 .epigraph p {
+  text-align: left;
+  hyphens: manual;
   border-left: 3px solid var(--accent);
   padding-left: var(--s5);
   max-width: calc(32ch + var(--s5));
@@ -259,6 +272,8 @@ li > ol {
 /* --- Profile -------------------------------------------------------------- */
 
 .profile-links {
+  text-align: left;
+  hyphens: manual;
   font-family: var(--sans);
   font-size: var(--t1);
   color: var(--rule); /* inherited by the literal "|" separators */
