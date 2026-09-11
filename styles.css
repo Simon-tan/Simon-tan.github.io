@@ -97,17 +97,24 @@ body {
   font-synthesis-weight: none;
 }
 
-/* Justified prose, as the original site set it. Justification without
-   hyphenation opens rivers of whitespace, so the two ship together; hyphens:
-   auto relies on the lang attribute every page now carries. */
-p {
-  margin-bottom: var(--s4);
+/* Justified body text, as the original site set it — paragraphs and list items
+   alike, so the News timeline and the citation lists match the prose around
+   them. Justification without hyphenation opens rivers of whitespace, so the
+   two ship together; hyphens: auto relies on the lang attribute every page now
+   carries. Headings stay ragged-right deliberately: a justified two-line
+   heading tears open gaps that read as broken rather than typeset. */
+p,
+li {
   text-align: justify;
   hyphens: auto;
   /* Never break a word shorter than 6 letters, and never leave fewer than 3
      on either side of the break — the difference between "cog-nitive" and
      a stray "e-" hanging off the margin. */
   hyphenate-limit-chars: 6 3 3;
+}
+
+p {
+  margin-bottom: var(--s4);
 }
 
 p:last-child {
