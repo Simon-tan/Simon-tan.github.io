@@ -326,24 +326,21 @@ p:has(+ .recruit-label) {
   margin-bottom: var(--s6);
 }
 
+/* The requirements were authored as markdown checkboxes ("- [ ]") that plain
+   HTML renders literally. They are a real list now, so the browser's own marker
+   and hanging indent do the work. */
 .requirements {
-  padding-left: var(--s4);
-}
-
-/* Each requirement keeps its literal "- [ ]" characters; the hanging indent
-   just lets that authored marker behave like one. */
-.req,
-.req-note {
-  display: block;
-}
-
-.req {
-  padding-left: 2.6rem;
-  text-indent: -2.6rem;
-}
-
-.req:has(+ .req-note) {
   margin-bottom: var(--s3);
+}
+
+.requirements li {
+  margin-bottom: var(--s2);
+}
+
+/* The deadline that closes each list is a condition on the whole list, not
+   another item, so it sits outside it at the same indent. */
+.req-note {
+  padding-left: 1.4em;
 }
 
 /* --- Contact -------------------------------------------------------------- */
