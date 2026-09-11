@@ -1,173 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About - Sein Minn</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav >
-    <a href="index.html" class="nav-link active">About</a>
-    <a href="publications.html" class="nav-link">Publications</a>    
-    <a href="teaching.html" class="nav-link">Teaching</a>
-    <a href="activities.html" class="nav-link">Service</a>
-    <a href="lab.html" class="nav-link">MINN HAI Lab</a>
-  </nav>
-  
+  <header class="site-header">
+    <nav class="site-nav frame" aria-label="Primary">
+      <a href="index.html" aria-current="page">About</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="activities.html">Service</a>
+      <a href="lab.html">MINN HAI Lab</a>
+    </nav>
+  </header>
 
-  <script>
-    const links = document.querySelectorAll("nav a");
-    const currentPage = window.location.pathname.split("/").pop();
-  
-    links.forEach(link => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-      }
-    });
-  </script>
-
-  <div class="container1">
-    <h2 style="color: white; font-family: Times New Roman; font-style: italic;"> The existence of a problem in knowledge depends on the future
+  <main>
+    <blockquote class="epigraph col" role="doc-epigraph">
+      <p>The existence of a problem in knowledge depends on the future
       being different from the past, while the possibility of a solution of the problem depends on the future being like the past. (Frank
-      Knight, 1921) </h2>
- </div>
+      Knight, 1921)</p>
+    </blockquote>
 
-  <section id="about" class="about">
-    
-
-    <p style="text-align: right;">
+    <section id="about" class="col">
+      <p class="profile-links">
         <a href="https://www.linkedin.com/in/sein-minn-4bb9b584/" target="_blank">LinkedIn</a> |
         <a href="https://github.com/simon-tan" target="_blank">GitHub</a> |
         <a href="https://scholar.google.ca/citations?user=4cXYLugAAAAJ&hl=en" target="_blank">GoogleScholar</a> |
         <a href="https://www.researchgate.net/scientific-contributions/Sein-Minn-2106569817/publications/2#articles" target="_blank">ResearchGate</a>
-      </p>   
-    
-    <p style="text-align: justify;"> 
-      <img src="SeinMinn.jpg"" alt="Sein Minn" style="float: left; margin-right: 20px; width: 200px; height: auto;  border-radius: 8px;"> 
-      
-      I am an AI researcher focused on building adaptive, interpretable systems at the intersection of machine learning, user modeling, and cognitive modeling.
-      While my recent work centers on education, I am broadly committed to human-centered and explainable AI, aiming for accurate, transparent models 
-      that support trust in sensitive applications.
-       <br>
-       <br> 
-        I am also an assistant professor at the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology (AIT)</a> in Thailand. 
-        Before joining AIT, I worked at AI Research Center, <a href="https://uqam.ca/" target="_blank"> Université du Québec à Montréal</a>, Montreal, Canada,
-        and <a href="https://www.polytechnique.edu/en" target="_blank">École Polytechnique, 
-        Institut Polytechnique de Paris</a>, <a href="https://www.cnrs.fr/fr" target="_blank"> French National Centre for Scientific Research (CNRS)</a> 
-        and <a href="https://www.inria.fr/en" target="_blank"> French Institute for Research in Computer Science and Automation (Inria)</a> in France. 
+      </p>
 
-       <br>
-       <br>
-       
-        I received a Ph.D. in Computer Engineering from <a href="https://www.umontreal.ca/en/" target="_blank">Université de Montréal</a> in Canada. 
-        I also spent time at several international institutions, including <a href="https://smu.edu.sg/" target="_blank">Singapore Management University</a> in 
-        Singapore, <a href="https://www.nii.ac.jp/" target="_blank">National Institute of Informatics</a> in Japan, and <a href="https://www.hqu.edu.cn/" target="_blank">Huaqiao University</a> in 
-        China.
-        </p>
-  </section>
+      <div class="profile">
+        <img class="portrait" src="SeinMinn.jpg" alt="Sein Minn" width="518" height="559">
 
-  <section id="news" class="about">
-    <h2>News</h2> 
-    <ul style="font-size: 15px;">
+        <div class="bio">
+          <p>I am an AI researcher focused on building adaptive, interpretable systems at the intersection of machine learning, user modeling, and cognitive modeling.
+          While my recent work centers on education, I am broadly committed to human-centered and explainable AI, aiming for accurate, transparent models
+          that support trust in sensitive applications.</p>
 
-      <li> Jul 2026, I will give an invited speech at <a href="https://www.gdec.net.cn/?lang=en" target="_blank">The 2026 Global Digital Economy Conference</a>, Beijing. </li>
-      <li> June 2026, I will serve as a Program Committee member for <a href="https://aaai.org/conference/aaai/aaai-27/" target="_blank">AAAI 2027</a>, one of the premier conferences in artificial intelligence. </li>
-      <li> June 2026, Congrats, Samuel! <a href="https://inria.hal.science/hal-05640345/" target="_blank">"Counterfactual Learning of New Adaptive Instructional Policies using Logged Data"</a> has been accepted at <a href="https://ecmlpkdd.org/2026/" target="_blank">ECML PKDD 2026</a> (Machine Learning and Principles and Practice of Knowledge Discovery), one of the top conferences in the field of Machine Learning.</li>
-      <li> Apr 2026, I will serve as a Program Committee member for <a href="https://www3.cs.stonybrook.edu/~icdm2026/index.html" target="_blank">ICDM 2026</a>, a leading conference in Data Mining.</li>
-      <li> Apr 2026, I will serve as a Program Committee member for <a href="https://educationaldatamining.org/edm2026/" target="_blank">EDM 2026, poster session</a>, a leading conference in the field of AI in education.</li>
-      <li> Feb 2026, I will serve as a Program Committee member for <a href="https://www.aied-conference.org/2026" target="_blank">AIED 2026</a>, a leading conference in the field of AI in education.</li>
-      <li> Jul 2025, I will serve as a Program Committee member for <a href="https://aaai.org/conference/aaai/aaai-26/" target="_blank">AAAI 2026</a>, one of the premier conferences in artificial intelligence. </li>
-      <li> Jul 2025, I will be joining the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology</a>, Thailand as an Assistant Professor.</li>
-      <li> June 2025, I will serve as a Program Committee member for <a href="https://www3.cs.stonybrook.edu/~icdm2025/index.html" target="_blank">ICDM 2025</a>, a leading conference in Data Mining.</li>
-      <li> May 2025, <a href="https://arxiv.org/pdf/2509.18231" target="_blank">"Enhanced Interpretable Knowledge Tracing for Students’ Performance Prediction with Human-understandable Feature Space"</a> has been accepted at <a href="https://aied2025.itd.cnr.it/" target="_blank">AIED 2025</a> (Artificial Intelligence in Education), one of the top conferences in the field of AI in education.</li>
-      <li> May 2025, I will serve as a Program Committee member for <a href="https://icce2025.study.iitm.ac.in/" target="_blank">ICCE 2025</a> and ICCE Sub-Conference on Artificial Intelligence in Education / Intelligent Tutoring System (AIED/ITS) and Adaptive Learning.  </li>
-      <li> Feb 2025, I will serve as a Program Committee member for <a href="https://conferences.cis.um.edu.mo/ieeebigdata2025/" target="_blank">BigData 2025</a>, one of the top conferences in Big Data and Data Mining..</li>
-      <li> Feb 2025, I will serve as a Program Committee member for <a href="https://aied2025.itd.cnr.it/" target="_blank">AIED 2025</a> and <a href="https://educationaldatamining.org/edm2025/" target="_blank">EDM 2025</a>, leading conferences in the field of AI in education.</li>
-      
-   </ul> 
-  </section>
+          <p>I am also an assistant professor at the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology (AIT)</a> in Thailand.
+          Before joining AIT, I worked at AI Research Center, <a href="https://uqam.ca/" target="_blank">Université du Québec à Montréal</a>, Montreal, Canada,
+          and <a href="https://www.polytechnique.edu/en" target="_blank">École Polytechnique,
+          Institut Polytechnique de Paris</a>, <a href="https://www.cnrs.fr/fr" target="_blank">French National Centre for Scientific Research (CNRS)</a>
+          and <a href="https://www.inria.fr/en" target="_blank">French Institute for Research in Computer Science and Automation (Inria)</a> in France.</p>
 
-  <section id="opportunities" class="about">
-    <h2> Master/Ph.D. opportunities</h2>  
-  </section>
-  
+          <p>I received a Ph.D. in Computer Engineering from <a href="https://www.umontreal.ca/en/" target="_blank">Université de Montréal</a> in Canada.
+          I also spent time at several international institutions, including <a href="https://smu.edu.sg/" target="_blank">Singapore Management University</a> in
+          Singapore, <a href="https://www.nii.ac.jp/" target="_blank">National Institute of Informatics</a> in Japan, and <a href="https://www.hqu.edu.cn/" target="_blank">Huaqiao University</a> in
+          China.</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="container" style="text-align: justify;">
-    <p>
-      I am looking for students with a strong background in computer science, machine learning, or related fields, and a passion for research to join <a href="lab.html" target="_blank">MINN HAI Lab</a> at the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology</a> in Thailand, 
-      an English-speaking, research-focused postgraduate institute located just 40 km from Bangkok. 
-      AIT offers a peaceful, multicultural environment, low living costs, and a variety of scholarship opportunities to help you focus on your research and enjoy a balanced life.
-      
-      <br>
-      <br>
-      Scholarships for Master's and Ph.D. programs are available through <a href="https://ait.ac.th/financial-aid/" target="_blank">several competitive programs</a>, each with its own application deadline.
-      To be considered for all types of scholarship opportunities, prospective students are strongly encouraged to submit their applications as early as possible (see our <a href="https://ait.ac.th/admissions/" target="_blank">application deadlines</a>). 
-      <br>
-      <br>
+    <section id="news" class="col">
+      <h2>News</h2>
+      <ul class="news-list">
+        <li><span class="news-date">Jul 2026,</span> I will give an invited speech at <a href="https://www.gdec.net.cn/?lang=en" target="_blank">The 2026 Global Digital Economy Conference</a>, Beijing.</li>
+        <li><span class="news-date">June 2026,</span> I will serve as a Program Committee member for <a href="https://aaai.org/conference/aaai/aaai-27/" target="_blank">AAAI 2027</a>, one of the premier conferences in artificial intelligence.</li>
+        <li><span class="news-date">June 2026,</span> Congrats, Samuel! <a href="https://inria.hal.science/hal-05640345/" target="_blank">"Counterfactual Learning of New Adaptive Instructional Policies using Logged Data"</a> has been accepted at <a href="https://ecmlpkdd.org/2026/" target="_blank">ECML PKDD 2026</a> (Machine Learning and Principles and Practice of Knowledge Discovery), one of the top conferences in the field of Machine Learning.</li>
+        <li><span class="news-date">Apr 2026,</span> I will serve as a Program Committee member for <a href="https://www3.cs.stonybrook.edu/~icdm2026/index.html" target="_blank">ICDM 2026</a>, a leading conference in Data Mining.</li>
+        <li><span class="news-date">Apr 2026,</span> I will serve as a Program Committee member for <a href="https://educationaldatamining.org/edm2026/" target="_blank">EDM 2026, poster session</a>, a leading conference in the field of AI in education.</li>
+        <li><span class="news-date">Feb 2026,</span> I will serve as a Program Committee member for <a href="https://www.aied-conference.org/2026" target="_blank">AIED 2026</a>, a leading conference in the field of AI in education.</li>
+        <li><span class="news-date">Jul 2025,</span> I will serve as a Program Committee member for <a href="https://aaai.org/conference/aaai/aaai-26/" target="_blank">AAAI 2026</a>, one of the premier conferences in artificial intelligence.</li>
+        <li><span class="news-date">Jul 2025,</span> I will be joining the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology</a>, Thailand as an Assistant Professor.</li>
+        <li><span class="news-date">June 2025,</span> I will serve as a Program Committee member for <a href="https://www3.cs.stonybrook.edu/~icdm2025/index.html" target="_blank">ICDM 2025</a>, a leading conference in Data Mining.</li>
+        <li><span class="news-date">May 2025,</span> <a href="https://arxiv.org/pdf/2509.18231" target="_blank">"Enhanced Interpretable Knowledge Tracing for Students’ Performance Prediction with Human-understandable Feature Space"</a> has been accepted at <a href="https://aied2025.itd.cnr.it/" target="_blank">AIED 2025</a> (Artificial Intelligence in Education), one of the top conferences in the field of AI in education.</li>
+        <li><span class="news-date">May 2025,</span> I will serve as a Program Committee member for <a href="https://icce2025.study.iitm.ac.in/" target="_blank">ICCE 2025</a> and ICCE Sub-Conference on Artificial Intelligence in Education / Intelligent Tutoring System (AIED/ITS) and Adaptive Learning.</li>
+        <li><span class="news-date">Feb 2025,</span> I will serve as a Program Committee member for <a href="https://conferences.cis.um.edu.mo/ieeebigdata2025/" target="_blank">BigData 2025</a>, one of the top conferences in Big Data and Data Mining..</li>
+        <li><span class="news-date">Feb 2025,</span> I will serve as a Program Committee member for <a href="https://aied2025.itd.cnr.it/" target="_blank">AIED 2025</a> and <a href="https://educationaldatamining.org/edm2025/" target="_blank">EDM 2025</a>, leading conferences in the field of AI in education.</li>
+      </ul>
+    </section>
 
-     
-      <span style="text-align: center; color: red;"><strong>For prospective students,</strong></span>   
-      <br>  
-      If you are interested in joining my research group, please contact me with       
-      
-      <span style="text-align: center; color: red;"> <strong> 
-            <br>
-            - [ ] Up-to-Date CV, 
-            <br>
-            - [ ] research plan, and
-            <br>
-            - [ ] all previous academic transcripts
-            <br>           
-          at least one month before the scholarship/application deadlines.</strong></span>
-      <br>        
-      This will allow us sufficient time to discuss potential research directions and assess research alignment. <strong>Applicants whose CGPA is below the scholarship requirement are still encouraged to contact me if they have a strong and well-motivated research plan.</strong>
-      <br>
-      <br>
-      <span style="text-align: center; color: red;"><strong>For AIT students,</strong></span>   
-      <br>
-      If you have already been admitted to the Asian Institute of Technology and are looking for a thesis supervisor, please contact me with
-      <span style="text-align: center; color: red;"> <strong> 
-            <br>
-            - [ ] CGPA, and 
-            <br>
-            - [ ] a proposed research plan
-            <br>           
-           preferably before the end of the second semester, or no later than the inter-semester period of your first year.</strong></span>
+    <section id="opportunities" class="recruit-band">
+      <div class="col">
+        <h2>Master/Ph.D. opportunities</h2>
 
-      <br>
-      <br>
-      <strong> Please note that I will not consider requests submitted after the inter-semester period for student supervision for AIT students.</strong>
-      <br>
-      <br>
-      
-      
-      <strong>Due to the high volume of emails, please note that I will only respond to inquiries that meet all of the requirements described above and demonstrate strong research potential.
-        To facilitate the initial screening process, please ensure that all requested documents are included in your initial inquiry email.</strong>
-    </p>
-  </div>
+        <p>I am looking for students with a strong background in computer science, machine learning, or related fields, and a passion for research to join <a href="lab.html" target="_blank">MINN HAI Lab</a> at the <a href="https://ait.ac.th/" target="_blank">Asian Institute of Technology</a> in Thailand,
+        an English-speaking, research-focused postgraduate institute located just 40 km from Bangkok.
+        AIT offers a peaceful, multicultural environment, low living costs, and a variety of scholarship opportunities to help you focus on your research and enjoy a balanced life.</p>
 
-  <section id="collaborations" class="about">
-    
-  
+        <p>Scholarships for Master's and Ph.D. programs are available through <a href="https://ait.ac.th/financial-aid/" target="_blank">several competitive programs</a>, each with its own application deadline.
+        To be considered for all types of scholarship opportunities, prospective students are strongly encouraged to submit their applications as early as possible (see our <a href="https://ait.ac.th/admissions/" target="_blank">application deadlines</a>).</p>
 
-  
-    
-  
+        <p class="recruit-label"><strong>For prospective students,</strong></p>
 
- 
-  
+        <p>If you are interested in joining my research group, please contact me with</p>
 
+        <p class="requirements"><strong>
+          <span class="req">- [ ] Up-to-Date CV,</span>
+          <span class="req">- [ ] research plan, and</span>
+          <span class="req">- [ ] all previous academic transcripts</span>
+          <span class="req-note">at least one month before the scholarship/application deadlines.</span>
+        </strong></p>
 
+        <p>This will allow us sufficient time to discuss potential research directions and assess research alignment. <strong>Applicants whose CGPA is below the scholarship requirement are still encouraged to contact me if they have a strong and well-motivated research plan.</strong></p>
 
+        <p class="recruit-label"><strong>For AIT students,</strong></p>
 
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out via email:</p>
-    <p>sein-minn @ ait.asia</p>
-    
-  </section>
+        <p>If you have already been admitted to the Asian Institute of Technology and are looking for a thesis supervisor, please contact me with</p>
 
-  <footer>
-    © 2025 Sein Minn – Built with HTML & CSS
-  </footer>  
+        <p class="requirements"><strong>
+          <span class="req">- [ ] CGPA, and</span>
+          <span class="req">- [ ] a proposed research plan</span>
+          <span class="req-note">preferably before the end of the second semester, or no later than the inter-semester period of your first year.</span>
+        </strong></p>
+
+        <p><strong>Please note that I will not consider requests submitted after the inter-semester period for student supervision for AIT students.</strong></p>
+
+        <p><strong>Due to the high volume of emails, please note that I will only respond to inquiries that meet all of the requirements described above and demonstrate strong research potential.
+        To facilitate the initial screening process, please ensure that all requested documents are included in your initial inquiry email.</strong></p>
+      </div>
+    </section>
+
+    <section id="contact" class="col">
+      <h2>Contact</h2>
+      <p>Feel free to reach out via email:</p>
+      <p class="contact-email">sein-minn @ ait.asia</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="frame">© 2025 Sein Minn – Built with HTML &amp; CSS</div>
+  </footer>
 </body>
 </html>

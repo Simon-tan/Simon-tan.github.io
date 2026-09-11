@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> Service - Sein Minn</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav >
-    <a href="index.html" class="nav-link">About</a>
-    <a href="publications.html" class="nav-link">Publications</a>    
-    <a href="teaching.html" class="nav-link">Teaching</a>
-    <a href="activities.html" class="nav-link active">Service</a>
-    <a href="lab.html" class="nav-link">HI+AI Lab</a>
-  </nav>
+  <header class="site-header">
+    <nav class="site-nav frame" aria-label="Primary">
+      <a href="index.html">About</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="activities.html" aria-current="page">Service</a>
+      <a href="lab.html">HI+AI Lab</a>
+    </nav>
+  </header>
 
+  <main>
+    <section id="Service" class="col">
+      <h1>Academic service</h1>
+      <ol class="citation-list">
+        <li>Program Committee: AIED 2020-2026, BigData 2022-2025, EDM 2023-2025, ICCE 2025, ICDM 2025, AAAI 2026</li>
+        <li>Review Editor: Editorial Board of Frontiers in AI 2022-2025</li>
+        <li>Reviewer: AIED, EDM, ToE, TLT, DMKD, MDPI Info, BigData</li>
+        <li>Session Chair: ICDM Ph.D. forum</li>
+      </ol>
 
- 
-
-
-
-  <section id="Service" class="about">
-    <h2>Academic service</h2>  
-    <ol>
-        <li> Program Committee:  AIED 2020-2026, BigData 2022-2025, EDM 2023-2025, ICCE 2025, ICDM 2025, AAAI 2026 </li>
-        <li> Review Editor: Editorial Board of Frontiers in AI 2022-2025</li>
-        <li> Reviewer: AIED, EDM, ToE, TLT, DMKD, MDPI Info, BigData </li>
-        <li> Session Chair: ICDM Ph.D. forum </li>
-    </ol>
-  
-  
-      <ul>
+      <ul class="venues">
         <li>
           Conferences
           <ul>
@@ -51,23 +53,17 @@
           </ul>
         </li>
       </ul>
-    
-  </section>
+    </section>
 
-  <section id="Activities" class="about">
-    <h2>Activities</h2>
-  </section>
-
-
-  <div class="container">
-    
-    <ul>
+    <section id="Activities" class="col">
+      <h2>Activities</h2>
+      <ul class="venues">
         <li>
           Invited talks
           <ul>
-            <li> Future Education Young Scholars Forum, Beijing Normal University, Dec 2024</li>
+            <li>Future Education Young Scholars Forum, Beijing Normal University, Dec 2024</li>
             <li>NUS AI Health Community, National University of Singapore - Singapore, Aug 2024</li>
-            <li>SODA, Inria - Saclay, Paris, Dec 2021 </li>
+            <li>SODA, Inria - Saclay, Paris, Dec 2021</li>
             <li>MOCAH, LIP6, Sorbonne Université, Paris, Nov 2021</li>
             <li>D-VET, EPFL, Oct 2021</li>
             <li>Yong Scholar Forum, Beijing Normal University, Dec 2020</li>
@@ -80,21 +76,18 @@
             <li>National Institute of Informatics, Tokyo, 2017-2018</li>
           </ul>
         </li>
-    </ul>
-  </div>
+      </ul>
+    </section>
 
+    <section id="contact" class="col">
+      <h2>Contact</h2>
+      <p>Feel free to reach out via email:</p>
+      <p class="contact-email">sein.minn.cs @ gmail.com</p>
+    </section>
+  </main>
 
-
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out via email:</p>
-    <p>sein.minn.cs @ gmail.com</p>
-    
-  </section>
-
-  <footer>
-    © 2025 Sein Minn – Built with HTML & CSS
-  </footer>  
-
+  <footer class="site-footer">
+    <div class="frame">© 2025 Sein Minn – Built with HTML &amp; CSS</div>
+  </footer>
 </body>
 </html>

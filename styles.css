@@ -1,0 +1,467 @@
+/* ============================================================================
+   Sein Minn — academic portfolio
+   One stylesheet, no build step. Organised top-down:
+   tokens > reset > base type > layout > components > page overrides > queries.
+   Every colour, size and space is a custom property; raw values below :root
+   are limited to hairline border widths.
+   ========================================================================== */
+
+/* --- Tokens --------------------------------------------------------------- */
+
+:root {
+  /* Colour. --accent is reserved for interactive and wayfinding elements. */
+  --paper: #FBFBF8;
+  --band: #F3F1EA;
+  --ink: #22303C;
+  --ink-soft: #54636F;
+  --accent: #2C5F7C;
+  --accent-deep: #1E4258;
+  --rule: #DDD9CF;
+
+  /* Type */
+  --serif: "STIX Two Text", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --t1: 0.8rem;
+  --t2: 1rem;
+  --t3: 1.25rem;
+  --t4: 1.563rem;
+  --t5: 1.953rem;
+  --t6: 2.441rem;
+
+  --leading-prose: 1.65;
+  --leading-tight: 1.25;
+
+  /* Space */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 20px;
+  --s5: 32px;
+  --s6: 52px;
+  --s7: 84px;
+
+  /* Layout */
+  --gutter: var(--s4);
+  --measure: 44rem;   /* the reading column: prose, headings, lists, portrait row */
+  --frame: 56rem;     /* chrome only: nav and footer */
+  --portrait: 12.5rem;
+  --date-col: 6rem;
+
+  --motion: 140ms;
+}
+
+/* --- Reset ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Margins flow one direction: bottom margins plus section padding, so no two
+   components ever fight over the gap between them. The single exception is a
+   nested list, which has no preceding element to hang a bottom margin off. */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Base type ------------------------------------------------------------ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 106.25%; /* 17px root — STIX needs it; the whole rem scale follows */
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--t2);
+  line-height: var(--leading-prose);
+  font-synthesis-weight: none;
+}
+
+p {
+  margin-bottom: var(--s4);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  color: var(--ink);
+  margin-bottom: var(--s5);
+}
+
+h1 {
+  font-size: var(--t5);
+}
+
+h2 {
+  font-size: var(--t4);
+}
+
+h3 {
+  font-size: var(--t3);
+}
+
+h4 {
+  font-size: var(--t2);
+  margin-bottom: var(--s3);
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* Prose links keep their underline — this audience expects it. Only the nav
+   and the profile row opt out. */
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--accent-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 2px;
+}
+
+/* --- Layout primitives ---------------------------------------------------- */
+
+.frame,
+.col {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.frame {
+  max-width: calc(var(--frame) + 2 * var(--gutter));
+}
+
+.col {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+}
+
+main {
+  padding-top: var(--s7);
+}
+
+main > * + * {
+  margin-top: var(--s7);
+}
+
+/* --- Lists ---------------------------------------------------------------- */
+
+/* Hanging indent is the browser default with outside markers; the job here is
+   the rhythm between items and a quieter marker. */
+ul,
+ol {
+  padding-left: 1.4em;
+}
+
+li {
+  margin-bottom: var(--s3);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+li::marker {
+  color: var(--ink-soft);
+}
+
+li > ul,
+li > ol {
+  margin-top: var(--s3);
+}
+
+/* --- Nav ------------------------------------------------------------------ */
+
+.site-header {
+  padding-block: var(--s5) 0;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+}
+
+.site-nav a {
+  font-family: var(--sans);
+  font-size: var(--t1);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  padding-block: var(--s1);
+}
+
+.site-nav a:hover {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* --- Epigraph ------------------------------------------------------------- */
+
+/* The site's single large typographic moment (DECISIONS D-03). The rule sits on
+   the paragraph, not the column, so it lands on the page's reading edge rather
+   than out in the gutter. */
+.epigraph p {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s5);
+  max-width: calc(32ch + var(--s5));
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  text-wrap: pretty;
+}
+
+/* --- Profile -------------------------------------------------------------- */
+
+.profile-links {
+  font-family: var(--sans);
+  font-size: var(--t1);
+  color: var(--rule); /* inherited by the literal "|" separators */
+}
+
+.profile-links a {
+  text-decoration: none;
+}
+
+.profile-links a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.profile {
+  display: grid;
+  gap: var(--s5);
+}
+
+.portrait {
+  width: var(--portrait);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* --- News timeline -------------------------------------------------------- */
+
+/* The only list on the site that gets a spine, because News is the only list
+   that is genuinely a time sequence (DECISIONS D-08). */
+.news-list {
+  list-style: none;
+  padding-left: var(--s5);
+  border-left: 1px solid var(--rule);
+}
+
+.news-list li {
+  margin-bottom: var(--s4);
+  max-width: 80ch;
+}
+
+.news-date {
+  font-family: var(--sans);
+  font-size: var(--t1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: var(--s1);
+}
+
+/* --- Recruitment band ----------------------------------------------------- */
+
+/* The site's only full-bleed background (DECISIONS D-09). Resist adding more. */
+.recruit-band {
+  background-color: var(--band);
+  padding-block: var(--s6);
+}
+
+.recruit-label {
+  margin-bottom: var(--s2);
+}
+
+p:has(+ .recruit-label) {
+  margin-bottom: var(--s6);
+}
+
+.requirements {
+  padding-left: var(--s4);
+}
+
+/* Each requirement keeps its literal "- [ ]" characters; the hanging indent
+   just lets that authored marker behave like one. */
+.req,
+.req-note {
+  display: block;
+}
+
+.req {
+  padding-left: 2.6rem;
+  text-indent: -2.6rem;
+}
+
+.req:has(+ .req-note) {
+  margin-bottom: var(--s3);
+}
+
+/* --- Contact -------------------------------------------------------------- */
+
+/* The email line is deliberately unstyled: body serif, body size, the authored
+   spacing left alone (DECISIONS D-10). The .contact-email hook stays in the
+   markup for any later progressive enhancement. */
+
+/* --- Footer --------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--s7);
+  padding-block: var(--s5) var(--s6);
+  font-family: var(--sans);
+  font-size: var(--t1);
+  color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+}
+
+/* --- Page overrides ------------------------------------------------------- */
+
+/* The old stylesheet carried the lab's name in red; D-05 allows no second
+   accent, so the emphasis the author wanted is carried by weight alone. */
+.lab-name {
+  font-weight: 600;
+}
+
+/* Two-level service/activity lists. The outer item is a category label, not an
+   entry, so it drops its marker and picks up weight; the entries under it keep
+   the base list treatment. */
+.venues {
+  list-style: none;
+  padding-left: 0;
+}
+
+.venues > li {
+  margin-bottom: var(--s5);
+  font-weight: 500;
+}
+
+.venues > li > ul {
+  font-weight: 400;
+}
+
+.citation-list:has(+ .venues) {
+  margin-bottom: var(--s6);
+}
+
+/* Publications and the lab's project entries: citation text stays as authored,
+   so the only job is a comfortable measure and breathing room between entries. */
+.citation-list li {
+  margin-bottom: var(--s4);
+  max-width: 80ch;
+}
+
+.project {
+  margin-bottom: var(--s7);
+}
+
+.project:last-child {
+  margin-bottom: 0;
+}
+
+.project h4 {
+  font-family: var(--sans);
+  font-size: var(--t1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: var(--s3);
+}
+
+.lede {
+  max-width: 72ch;
+}
+
+/* --- Media queries -------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: var(--s6);
+  }
+
+  .site-header {
+    padding-block: var(--s6) 0;
+  }
+
+  .profile {
+    grid-template-columns: var(--portrait) 1fr;
+    align-items: start;
+    column-gap: var(--s5);
+  }
+
+  /* Dates step out of the flow into their own column, turning the list into a
+     two-column timeline. The span is left in place in the source. */
+  .news-list li {
+    position: relative;
+    padding-left: calc(var(--date-col) + var(--s4));
+  }
+
+  .news-date {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--date-col);
+    margin-bottom: 0;
+    line-height: var(--leading-prose);
+  }
+}
+
+@media (max-width: 479px) {
+  .epigraph p {
+    padding-left: var(--s4);
+    font-size: var(--t4);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a {
+    transition: color var(--motion) ease, text-decoration-color var(--motion) ease;
+  }
+}
