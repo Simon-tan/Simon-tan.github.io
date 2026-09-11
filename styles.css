@@ -1,26 +1,32 @@
 /* ============================================================================
-   Sein Minn — academic portfolio
+   Sein Minn — academic portfolio, editorial/newsprint direction
    One stylesheet, no build step. Organised top-down:
    tokens > reset > base type > layout > components > page overrides > queries.
-   Every colour, size and space is a custom property; raw values below :root
-   are limited to hairline border widths.
+
+   The register is broadsheet, not poster: heavy condensed display type, hard
+   rules, zero radius, newsprint stock, single-ink photography. Body copy stays
+   in a serif because the recruitment section runs to ~800 words, and a
+   newspaper sets its body in serif for exactly that reason.
    ========================================================================== */
 
 /* --- Tokens --------------------------------------------------------------- */
 
 :root {
-  /* Colour. --accent is reserved for interactive and wayfinding elements. */
-  --paper: #FBFBF8;
-  --band: #F3F1EA;
-  --ink: #22303C;
-  --ink-soft: #54636F;
-  --accent: #2C5F7C;
-  --accent-deep: #1E4258;
-  --rule: #DDD9CF;
+  /* Newsprint and printing ink. --accent is reserved for links. */
+  --paper: #F4F2EC;
+  --band: #E7E3D9;
+  --ink: #15171A;
+  --ink-soft: #585D64;
+  --accent: #1B3F63;
+  --accent-deep: #0E2438;
+  --rule: #C2BDB1;
 
-  /* Type */
+  /* Type. Archivo is variable on both width and weight, so the display face is
+     the body face compressed and blacked — one family doing two jobs. */
   --serif: "STIX Two Text", Georgia, "Times New Roman", serif;
-  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --condensed: 80%;
+  --semi-condensed: 90%;
 
   --t1: 0.8rem;
   --t2: 1rem;
@@ -29,8 +35,8 @@
   --t5: 1.953rem;
   --t6: 2.441rem;
 
-  --leading-prose: 1.65;
-  --leading-tight: 1.25;
+  --leading-prose: 1.6;
+  --leading-tight: 1.04;
 
   /* Space */
   --s1: 4px;
@@ -41,11 +47,16 @@
   --s6: 52px;
   --s7: 84px;
 
+  /* Rules. A broadsheet has a small vocabulary of weights; these are it. */
+  --rule-heavy: 5px;
+  --rule-mid: 2px;
+  --rule-hair: 1px;
+
   /* Layout */
   --gutter: var(--s4);
-  --measure: 44rem;   /* the reading column: prose, headings, lists, portrait row */
-  --frame: 56rem;     /* chrome only: nav and footer */
-  --portrait: 12.5rem;
+  --measure: 44rem;   /* the reading column */
+  --frame: 58rem;     /* masthead, hero headline, footer */
+  --portrait: 13rem;
   --date-col: 6rem;
 
   --motion: 140ms;
@@ -97,19 +108,16 @@ body {
   font-synthesis-weight: none;
 }
 
-/* Justified body text, as the original site set it — paragraphs and list items
-   alike, so the News timeline and the citation lists match the prose around
-   them. Justification without hyphenation opens rivers of whitespace, so the
-   two ship together; hyphens: auto relies on the lang attribute every page now
-   carries. Headings stay ragged-right deliberately: a justified two-line
-   heading tears open gaps that read as broken rather than typeset. */
+/* Justified body text — paragraphs and list items alike. Justification without
+   hyphenation opens rivers of whitespace, so the two ship together; hyphens:
+   auto relies on the lang attribute every page carries. Headings stay
+   ragged-right: a justified headline tears open gaps that read as broken. */
 p,
 li {
   text-align: justify;
   hyphens: auto;
   /* Never break a word shorter than 6 letters, and never leave fewer than 3
-     on either side of the break — the difference between "cog-nitive" and
-     a stray "e-" hanging off the margin. */
+     on either side of the break. */
   hyphenate-limit-chars: 6 3 3;
 }
 
@@ -121,31 +129,45 @@ p:last-child {
   margin-bottom: 0;
 }
 
+/* Section heads are the paper's structural signal: condensed black caps under a
+   heavy rule. The rule belongs to the heading, so a section can never be
+   separated from its own divider. */
 h1,
-h2,
-h3,
-h4 {
-  font-family: var(--serif);
-  font-weight: 600;
+h2 {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-stretch: var(--condensed);
+  font-size: var(--t5);
   line-height: var(--leading-tight);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
   color: var(--ink);
+  border-top: var(--rule-heavy) solid var(--ink);
+  padding-top: var(--s3);
   margin-bottom: var(--s5);
 }
 
-h1 {
-  font-size: var(--t5);
-}
-
-h2 {
-  font-size: var(--t4);
-}
-
+/* Article titles run long and stay sentence-case; caps would make them a wall. */
 h3 {
-  font-size: var(--t3);
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: var(--semi-condensed);
+  font-size: var(--t4);
+  line-height: 1.12;
+  margin-bottom: var(--s4);
 }
 
+/* A standfirst label — the smallest step in the display hierarchy. */
 h4 {
-  font-size: var(--t2);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-stretch: var(--semi-condensed);
+  font-size: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  border-top: var(--rule-hair) solid var(--rule);
+  padding-top: var(--s2);
   margin-bottom: var(--s3);
 }
 
@@ -153,8 +175,6 @@ strong {
   font-weight: 600;
 }
 
-/* Prose links keep their underline — this audience expects it. Only the nav
-   and the profile row opt out. */
 a {
   color: var(--accent);
   text-decoration: underline;
@@ -167,7 +187,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-deep);
+  outline: var(--rule-mid) solid var(--accent-deep);
   outline-offset: 2px;
 }
 
@@ -185,11 +205,29 @@ a:hover {
 }
 
 .col {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
+  max-width: calc(var(--frame) + 2 * var(--gutter));
+}
+
+/* Prose caps at the reading measure and hangs left; the air collects on the
+   right, where a broadsheet keeps it. */
+.col > * {
+  max-width: var(--measure);
+}
+
+/* Section rules and the briefs' date column are the exceptions: the rule spans
+   the full page width, and the briefs widen by exactly the date column so their
+   text still lands on the measure. */
+.col > h1,
+.col > h2 {
+  max-width: none;
+}
+
+.col > .news-list {
+  max-width: calc(var(--measure) + var(--date-col) + var(--s4));
 }
 
 main {
-  padding-top: var(--s7);
+  padding-top: var(--s6);
 }
 
 main > * + * {
@@ -198,8 +236,6 @@ main > * + * {
 
 /* --- Lists ---------------------------------------------------------------- */
 
-/* Hanging indent is the browser default with outside markers; the job here is
-   the rhythm between items and a quieter marker. */
 ul,
 ol {
   padding-left: 1.4em;
@@ -222,78 +258,83 @@ li > ol {
   margin-top: var(--s3);
 }
 
-/* --- Nav ------------------------------------------------------------------ */
+/* --- Masthead ------------------------------------------------------------- */
 
+/* Heavy rule over a hairline: the folio bar every broadsheet opens with. It
+   bleeds the full viewport, so it reads as page furniture rather than as a
+   section rule that missed its alignment. */
 .site-header {
-  padding-block: var(--s5) 0;
+  border-top: var(--rule-heavy) solid var(--ink);
+  border-bottom: var(--rule-hair) solid var(--ink);
 }
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s2) var(--s5);
+  padding-block: var(--s3);
 }
 
 .site-nav a {
   font-family: var(--sans);
   font-size: var(--t1);
-  font-weight: 500;
+  font-weight: 600;
+  font-stretch: var(--semi-condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--ink);
   text-decoration: none;
-  padding-block: var(--s1);
 }
 
 .site-nav a:hover {
   color: var(--accent-deep);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
 }
 
 .site-nav a[aria-current="page"] {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+  font-weight: 900;
+  border-bottom: 4px solid var(--ink);
+  padding-bottom: 2px;
 }
 
-/* --- Epigraph ------------------------------------------------------------- */
+/* --- Hero headline -------------------------------------------------------- */
 
-/* The site's single large typographic moment (DECISIONS D-03). The rule sits on
-   the paragraph, not the column, so it lands on the page's reading edge rather
-   than out in the gutter. */
-/* The hero stays ragged-right. At 32ch a justified line opens gaps you could
-   drive a truck through, and display type has no small words to absorb them. */
+/* The Knight quotation set as the front-page headline: the widest measure on
+   the site, condensed black, leading closed right up. */
 .epigraph p {
+  border-bottom: var(--rule-mid) solid var(--ink);
+  padding-bottom: var(--s5);
+  font-family: var(--sans);
+  font-weight: 900;
+  font-stretch: 78%;
+  font-size: clamp(1.9rem, 4.4vw, 3.3rem);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
   text-align: left;
   hyphens: manual;
-  border-left: 3px solid var(--accent);
-  padding-left: var(--s5);
-  max-width: calc(32ch + var(--s5));
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  font-weight: 400;
-  line-height: var(--leading-tight);
   text-wrap: pretty;
 }
 
 /* --- Profile -------------------------------------------------------------- */
 
 .profile-links {
-  text-align: left;
-  hyphens: manual;
   font-family: var(--sans);
   font-size: var(--t1);
+  font-weight: 600;
+  font-stretch: var(--semi-condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  hyphens: manual;
   color: var(--rule); /* inherited by the literal "|" separators */
 }
 
 .profile-links a {
+  color: var(--ink);
   text-decoration: none;
 }
 
 .profile-links a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  color: var(--accent-deep);
 }
 
 .profile {
@@ -301,53 +342,65 @@ li > ol {
   gap: var(--s5);
 }
 
-/* The name under the portrait is a caption, not prose: the sans face, quiet
-   colour and ragged-right setting keep it from competing with the bio. */
-.portrait-figure figcaption {
-  margin-top: var(--s3);
-  font-family: var(--sans);
-  font-size: var(--t1);
-  font-weight: 500;
-  color: var(--ink-soft);
-  text-align: left;
-}
-
+/* Press photography: single ink, pushed contrast, square corners. */
 .portrait {
-  width: var(--portrait);
+  width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 4px;
+  filter: grayscale(1) contrast(1.15);
 }
 
-/* --- News timeline -------------------------------------------------------- */
+/* The nameplate. Same condensed black as the section heads, so the name reads
+   as part of the page's structure rather than a caption tacked underneath. */
+.portrait-figure figcaption {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-stretch: var(--condensed);
+  font-size: var(--t3);
+  line-height: 1.05;
+  text-transform: uppercase;
+  border-top: var(--rule-mid) solid var(--ink);
+  padding-top: var(--s2);
+  margin-top: var(--s2);
+}
 
-/* The only list on the site that gets a spine, because News is the only list
-   that is genuinely a time sequence (DECISIONS D-08). */
+/* --- News ----------------------------------------------------------------- */
+
+/* Ruled briefs. News is the only list that is genuinely a time sequence, so it
+   is the only one that gets the date column and the rules between entries. */
 .news-list {
   list-style: none;
-  padding-left: var(--s5);
-  border-left: 1px solid var(--rule);
+  padding-left: 0;
+  border-top: var(--rule-hair) solid var(--rule);
 }
 
 .news-list li {
-  margin-bottom: var(--s4);
+  border-bottom: var(--rule-hair) solid var(--rule);
+  padding-block: var(--s4);
+  margin-bottom: 0;
   max-width: 80ch;
 }
 
 .news-date {
+  display: block;
   font-family: var(--sans);
   font-size: var(--t1);
-  font-weight: 500;
+  font-weight: 700;
+  font-stretch: var(--semi-condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--ink-soft);
-  display: block;
   margin-bottom: var(--s1);
 }
 
 /* --- Recruitment band ----------------------------------------------------- */
 
-/* The site's only full-bleed background (DECISIONS D-09). Resist adding more. */
+/* The site's only tinted block, boxed top and bottom in heavy rules the way a
+   paper boxes a standing notice. Resist adding more. */
 .recruit-band {
   background-color: var(--band);
+  border-top: var(--rule-heavy) solid var(--ink);
+  border-bottom: var(--rule-heavy) solid var(--ink);
   padding-block: var(--s6);
 }
 
@@ -360,8 +413,7 @@ p:has(+ .recruit-label) {
 }
 
 /* The requirements were authored as markdown checkboxes ("- [ ]") that plain
-   HTML renders literally. They are a real list now, so the browser's own marker
-   and hanging indent do the work. */
+   HTML renders literally. They are a real list now. */
 .requirements {
   margin-bottom: var(--s3);
 }
@@ -370,40 +422,52 @@ p:has(+ .recruit-label) {
   margin-bottom: var(--s2);
 }
 
-/* The deadline that closes each list is a condition on the whole list, not
-   another item, so it sits outside it at the same indent. */
+/* The deadline closing each list qualifies the whole list, not one item, so it
+   sits outside it at the same indent. */
 .req-note {
   padding-left: 1.4em;
 }
 
 /* --- Contact -------------------------------------------------------------- */
 
-/* The email line is deliberately unstyled: body serif, body size, the authored
-   spacing left alone (DECISIONS D-10). The .contact-email hook stays in the
-   markup for any later progressive enhancement. */
+/* The address is the page's one piece of hard data, so it gets the data
+   treatment. The authored spacing inside it is left exactly alone. */
+.contact-email {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-stretch: var(--condensed);
+  font-size: var(--t4);
+  text-align: left;
+  hyphens: manual;
+}
 
 /* --- Footer --------------------------------------------------------------- */
 
 .site-footer {
   margin-top: var(--s7);
-  padding-block: var(--s5) var(--s6);
+  padding-block: 0 var(--s6);
   font-family: var(--sans);
   font-size: var(--t1);
+  font-weight: 600;
+  font-stretch: var(--semi-condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--ink-soft);
-  border-top: 1px solid var(--rule);
+  border-top: var(--rule-heavy) solid var(--ink);
+}
+
+.site-footer .frame {
+  padding-top: var(--s3);
 }
 
 /* --- Page overrides ------------------------------------------------------- */
 
-/* The old stylesheet carried the lab's name in red; D-05 allows no second
-   accent, so the emphasis the author wanted is carried by weight alone. */
 .lab-name {
   font-weight: 600;
 }
 
-/* Two-level service/activity lists. The outer item is a category label, not an
-   entry, so it drops its marker and picks up weight; the entries under it keep
-   the base list treatment. */
+/* Two-level service lists: the outer item is a category label, not an entry, so
+   it takes the label face and the entries under it revert to body copy. */
 .venues {
   list-style: none;
   padding-left: 0;
@@ -411,22 +475,31 @@ p:has(+ .recruit-label) {
 
 .venues > li {
   margin-bottom: var(--s5);
-  font-weight: 500;
+  font-family: var(--sans);
+  font-size: var(--t1);
+  font-weight: 700;
+  font-stretch: var(--semi-condensed);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .venues > li > ul {
+  margin-top: var(--s4);
+  font-family: var(--serif);
+  font-size: var(--t2);
   font-weight: 400;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.citation-list li {
+  margin-bottom: var(--s4);
+  max-width: 80ch;
 }
 
 .citation-list:has(+ .venues) {
   margin-bottom: var(--s6);
-}
-
-/* Publications and the lab's project entries: citation text stays as authored,
-   so the only job is a comfortable measure and breathing room between entries. */
-.citation-list li {
-  margin-bottom: var(--s4);
-  max-width: 80ch;
 }
 
 .project {
@@ -435,14 +508,6 @@ p:has(+ .recruit-label) {
 
 .project:last-child {
   margin-bottom: 0;
-}
-
-.project h4 {
-  font-family: var(--sans);
-  font-size: var(--t1);
-  font-weight: 500;
-  color: var(--ink-soft);
-  margin-bottom: var(--s3);
 }
 
 .lede {
@@ -456,8 +521,8 @@ p:has(+ .recruit-label) {
     --gutter: var(--s6);
   }
 
-  .site-header {
-    padding-block: var(--s6) 0;
+  main {
+    padding-top: var(--s7);
   }
 
   .profile {
@@ -466,8 +531,8 @@ p:has(+ .recruit-label) {
     column-gap: var(--s5);
   }
 
-  /* Dates step out of the flow into their own column, turning the list into a
-     two-column timeline. The span is left in place in the source. */
+  /* Dates step out of the flow into their own column, turning the briefs into
+     a two-column timeline. The span stays put in the source. */
   .news-list li {
     position: relative;
     padding-left: calc(var(--date-col) + var(--s4));
@@ -476,22 +541,20 @@ p:has(+ .recruit-label) {
   .news-date {
     position: absolute;
     left: 0;
-    top: 0;
+    top: var(--s4);
     width: var(--date-col);
     margin-bottom: 0;
-    line-height: var(--leading-prose);
   }
 }
 
 @media (max-width: 479px) {
   .epigraph p {
-    padding-left: var(--s4);
-    font-size: var(--t4);
+    font-size: var(--t5);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   a {
-    transition: color var(--motion) ease, text-decoration-color var(--motion) ease;
+    transition: color var(--motion) ease;
   }
 }
