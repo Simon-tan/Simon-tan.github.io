@@ -301,6 +301,17 @@ li > ol {
   gap: var(--s5);
 }
 
+/* The name under the portrait is a caption, not prose: the sans face, quiet
+   colour and ragged-right setting keep it from competing with the bio. */
+.portrait-figure figcaption {
+  margin-top: var(--s3);
+  font-family: var(--sans);
+  font-size: var(--t1);
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-align: left;
+}
+
 .portrait {
   width: var(--portrait);
   aspect-ratio: 4 / 5;
