@@ -576,64 +576,30 @@ p:has(+ .recruit-label) {
    that few opens holes. The display size steps down so more words fit, and the
    hyphenation limits relax so the renderer can actually fill a line instead of
    stretching the spaces. */
-/* Wide screens. The frame grows so the page fills, and the extra width goes
-   into a second column rather than into longer lines — which is what a
-   broadsheet does with a big sheet of paper. */
+/* Wide screens: one column, running the full width of the page.
+
+   Worth knowing: at this width a line carries roughly 120-140 characters,
+   against the 60-75 that is comfortable to read — the eye loses its place
+   returning to the start of the next line. The owner asked for a single
+   full-width column over both a narrower measure and a two-column set, so the
+   measure caps are lifted here rather than enforced. */
 @media (min-width: 1200px) {
   :root {
-    --frame: 76rem;
+    --frame: 84rem;
   }
 
-  /* The portrait no longer eats into the reading measure: the bio gets its own
-     full column beside it, so the lines lengthen to a comfortable measure
-     instead of the 51 characters they were squeezed to. */
-  .col > .profile {
-    max-width: calc(var(--measure) + var(--portrait) + var(--s5));
+  /* `.col > .news-list` carries a more specific cap in the base rules, so it
+     has to be named here or it stays narrow while everything else widens. */
+  .col > *,
+  .col > .news-list,
+  .lede,
+  .news-list li,
+  .citation-list li {
+    max-width: none;
   }
 
   .profile {
-    grid-template-columns: var(--portrait) minmax(0, var(--measure));
-  }
-}
-
-@media (min-width: 1320px) {
-  /* Briefs, citations and venue lists are short, independent entries — exactly
-     what a newspaper sets in columns. Continuous prose (the bio, the
-     recruitment notice, project descriptions) stays single-column, because
-     reading that in columns means going down the page and back up again. */
-  .col > .news-list,
-  .col > .citation-list,
-  .col > .venues,
-  .col > .project,
-  .project > .citation-list {
-    max-width: none;
-  }
-
-  .news-list,
-  .citation-list,
-  .venues {
-    columns: 2;
-    column-gap: var(--s7);
-    column-rule: var(--rule-hair) solid var(--rule);
-  }
-
-  .news-list li,
-  .citation-list li,
-  .venues > li {
-    break-inside: avoid;
-  }
-
-  /* The lab's prose blocks are single long paragraphs. At this width they set
-     in two columns like any newspaper feature, rather than leaving half the
-     sheet blank at a measure that cannot grow any further without hurting.
-     The bio and the recruitment notice are excluded: the bio already sits in a
-     column beside the portrait, and the notice interleaves prose with lists
-     that must be read straight through. */
-  .col > .lede,
-  .project > .lede {
-    max-width: none;
-    columns: 2;
-    column-gap: var(--s7);
+    grid-template-columns: var(--portrait) 1fr;
   }
 }
 
