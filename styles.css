@@ -478,6 +478,16 @@ li > ol {
   padding-top: var(--s3);
 }
 
+/* When a page ends on the full-bleed band, the band's own heavy rule already
+   closes the page. The footer's section gap and its own rule would then frame
+   84px of nothing between two identical rules, so both are dropped and the
+   footer sits straight under the band — which looks exactly like the footer
+   rule on every other page, because the weights match. */
+main:has(> .recruit-band:last-child) + .site-footer {
+  margin-top: 0;
+  border-top: 0;
+}
+
 /* --- Page overrides ------------------------------------------------------- */
 
 .lab-name {
