@@ -429,16 +429,8 @@ li > ol {
   padding-top: 0;
 }
 
-.recruit-label {
-  margin-bottom: var(--s2);
-}
-
-p:has(+ .recruit-label) {
-  margin-bottom: var(--s6);
-}
-
-/* The requirements were authored as markdown checkboxes ("- [ ]") that plain
-   HTML renders literally. They are a real list now. */
+/* The application requirements, set as a real list rather than the dashes they
+   were written with. */
 .requirements {
   margin-bottom: var(--s3);
 }
@@ -447,10 +439,11 @@ p:has(+ .recruit-label) {
   margin-bottom: var(--s2);
 }
 
-/* The deadline closing each list qualifies the whole list, not one item, so it
-   sits outside it at the same indent. */
-.req-note {
-  padding-left: 1.4em;
+/* A bare URL is one unbreakable word. In justified prose it would stretch the
+   line around it and push past the screen edge on a phone, so it is allowed to
+   break mid-string. */
+.url {
+  overflow-wrap: anywhere;
 }
 
 /* --- Contact -------------------------------------------------------------- */
